@@ -1,0 +1,25 @@
+<HomeScreen>:
+    MDToolbar:
+        id: toolBar
+        title: root.name
+        pos_hint: {"top": 1}
+        elevation: 10
+        left_action_items: [[root.toolBarLeftItem, lambda x: root.open_nav_drawer(nav_drawer)]]
+        right_action_items: [["cog", lambda x: app.switch_screen("Settings", "left")]]
+    MDNavigationLayout:
+        ScreenManager:
+            id: screen_manager
+            Conversion:
+                name: "info"
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer
+                ScrollView:
+                    DrawerList:
+                        id: drawer_list
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
